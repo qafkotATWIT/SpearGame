@@ -13,7 +13,7 @@ public class Main extends Application {
 		try {
 			
 			new Menu(stage);
-			//new Game1(stage);
+			//Test 1 for the commit button Tedi
 			
 		} catch(Exception e) {
 			e.printStackTrace();
