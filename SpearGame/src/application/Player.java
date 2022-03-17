@@ -12,25 +12,25 @@ public class Player extends Character {
     @Override
     public void turnLeft() {
     	if(super.getCharacter().getTranslateX() > 0)
-    		this.getCharacter().setTranslateX(this.getCharacter().getTranslateX() - 3);
+    		super.turnLeft();
     }
 
     @Override
     public void turnRight() {
     	if(this.getCharacter().getTranslateX() < (main.getWidth() - this.getCharacter().getWidth()))
-    		this.getCharacter().setTranslateX(this.getCharacter().getTranslateX() + 3);
+    		super.turnRight();
     }
 
     @Override
     public void up() {
     	if(this.getCharacter().getTranslateY() > 0)
-    		this.getCharacter().setTranslateY(this.getCharacter().getTranslateY() - 3);
+    		super.up();
     }
     
     @Override
     public void down() {
     	if(this.getCharacter().getTranslateY() < main.getHeight() - this.getCharacter().getHeight())
-    		this.getCharacter().setTranslateY(this.getCharacter().getTranslateY() + 3);
+    		super.down();
     }
 
 }
