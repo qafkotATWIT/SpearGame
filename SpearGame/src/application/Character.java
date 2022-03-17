@@ -24,25 +24,21 @@ public abstract class Character {
 
 	
     public void turnLeft() {
-    	if(this.character.getTranslateX() > 0)
     		this.character.setTranslateX(this.character.getTranslateX() - 3);
     }
 
     
     public void turnRight() {
-    	if(this.character.getTranslateX() < (main.getWidth() - this.character.getWidth()))
     		this.character.setTranslateX(this.character.getTranslateX() + 3);
     }
 
     
     public void up() {
-    	if(this.character.getTranslateY() > 0)
     		this.character.setTranslateY(this.character.getTranslateY() - 3);
     }
     
     
     public void down() {
-    	if(this.character.getTranslateY() < main.getHeight() - this.character.getHeight())
     		this.character.setTranslateY(this.character.getTranslateY() + 3);
     }
     
