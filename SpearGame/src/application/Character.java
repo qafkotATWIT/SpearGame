@@ -8,13 +8,16 @@ public abstract class Character {
     private Rectangle character;
     private Point2D movement;
     Main main = new Main();
+    private double playerX;
+    private double playerY;
     
     public Character(Rectangle rectangle, int x, int y) {
         this.character = rectangle;
         this.character.setTranslateX(x);
         this.character.setTranslateY(y);
-
         this.movement = new Point2D(0, 0);
+        this.playerX = character.getTranslateX();
+        this.playerY = character.getTranslateY();
     }
 
     
@@ -66,5 +69,13 @@ public abstract class Character {
         changeY *= 0.01;
 
         this.movement = this.movement.add(changeX, changeY);
+    }
+    
+    public double getPlayerX() {
+    	return playerX;
+    }
+    
+    public double getPlayerY() {
+    	return playerY;
     }
 }
