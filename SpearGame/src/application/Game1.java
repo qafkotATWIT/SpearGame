@@ -6,12 +6,16 @@ import java.util.Map;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -47,23 +51,8 @@ public class Game1 extends Main {
             pressedKeys.put(event.getCode(), Boolean.FALSE);
         });
         
-        game1Scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent event) {
-            	mouseX = event.getX();
-            	mouseY = event.getY();
-            	System.out.println("X: " + event.getX() + " Y: " + event.getY());
-            	root.getChildren().clear();
-            	Line line = new Line(man.getX() + man.getCharacter().getWidth()/2, man.getY() + +man.getCharacter().getHeight()/2, mouseX, mouseY);
-            	line.setStrokeWidth(2f);
-            	line.setStroke(Color.RED);
-            	root.getChildren().add(line);
-            	root.getChildren().add(man.getCharacter());
-            
-            }
-          });
+    	root.getChildren().add(man.getCharacter());
         
-        Rectangle man2 = new Rectangle(250, 100);
-		root.getChildren().add(man2);
         new AnimationTimer() {
             @Override
             public void handle(long now) {            	
@@ -82,28 +71,34 @@ public class Game1 extends Main {
                 if(pressedKeys.getOrDefault(KeyCode.R, false)) {
                     man.restart();
                 }
-                Path path = new Path();
-
-            	// First move to starting point
-            	MoveTo moveTo = new MoveTo();
-            	moveTo.setX(100.0f);
-            	moveTo.setY(50.0f);
-
-            	// Then start drawing a line
-            	LineTo lineTo = new LineTo();
-            	lineTo.setX(75.0f);
-            	lineTo.setY(255.0f);
-
-            	path.getElements().add(moveTo);
-            	path.getElements().add(lineTo);
-            	root.getChildren().add(path);
             }
         }.start();
+        
+        game1Scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+            	Circle bullet = new Circle(5);
+            	mouseX = event.getX();
+            	mouseY = event.getY();
+        		Line bulletPath = new Line(man.getX() + man.getCharacter().getWidth()/2, man.getY() + man.getCharacter().getHeight()/2, mouseX, mouseY);
+        		shoot(bullet, bulletPath);
+            	root.getChildren().add(man.getCharacter());
+            }
+          });
         
         
 	}
 	
-
+	public void shoot(Circle bullet, Line bulletPath) {
+    	root.getChildren().add(bullet);
+    	PathTransition transition = new PathTransition();
+    	transition.setNode(bullet);
+    	transition.setPath(bulletPath);
+    	transition.play();
+    	
+	}
+	
+	
+	
 	public static Scene getGame1Scene() {
 		return game1Scene;
 	}
