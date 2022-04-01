@@ -6,12 +6,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.swing.event.ChangeListener;
 
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -50,6 +52,9 @@ public class Game1 extends Main {
 		
 		Player man = new Player(150, 100);
 		
+		Boss boss = new Boss();
+		Boss boss1 = new Boss();
+		Boss boss2 = new Boss();
         
         Map <KeyCode, Boolean> pressedKeys = new HashMap<>();
         game1Scene.setOnKeyPressed(event -> {
@@ -79,6 +84,9 @@ public class Game1 extends Main {
                 if(pressedKeys.getOrDefault(KeyCode.R, false)) {
                     man.restart();
                 }
+                if(boss.getX()==man.getX() || boss.getY()==man.getY()) {
+                	man.restart();
+                }
             }
         }.start();
         
@@ -88,16 +96,15 @@ public class Game1 extends Main {
             public void handle(MouseEvent event) {
             	mouseX = event.getX();
             	mouseY = event.getY();
-        		
-            	//Line bulletPath = new Line(man.getX() + man.getCharacter().getWidth()/2, man.getY() + man.getCharacter().getHeight()/2, mouseX, mouseY);
-        		//Object bull = bullet(new Circle(5), bulletPath, man);
- 
             	fire(man);
-            	//bullet.setOnFinished(e -> {root.getChildren().clear();root.getChildren().add(man.getCharacter());});
             }
           });
+        root.getChildren().add(boss.getBoss());
+        root.getChildren().add(boss1.getBoss());
+        root.getChildren().add(boss2.getBoss());
         
 	}
+	
 	
 	public void fire(Player man) {
 		Line bulletPath = new Line(man.getX() + man.getCharacter().getWidth()/2, man.getY() + man.getCharacter().getHeight()/2, mouseX, mouseY);

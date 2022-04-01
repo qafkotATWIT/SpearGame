@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -49,7 +50,6 @@ public class Menu extends Main{
 		options.getChildren().addAll(playgame1,playgame2,exit);		
 		root.setCenter(options);
 		root.setTop(top);
-		
 		menuScene = new Scene(root,getWidth(),getHeight());
 		stage.setTitle("Spear Game");
 		stage.setScene(menuScene);
