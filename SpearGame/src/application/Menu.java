@@ -67,7 +67,6 @@ public class Menu extends Main{
 	public void buildGame2() {
 		new Game2(stage);
 		stage.setScene(Game2.getGame2Scene());
-		
 	}
 		
 	// A function to make a button
