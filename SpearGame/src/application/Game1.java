@@ -1,13 +1,20 @@
 package application;
 
 import java.awt.MouseInfo;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import javax.swing.event.ChangeListener;
+
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -29,6 +36,7 @@ public class Game1 extends Main {
 	private static Scene game1Scene;
 	double mouseX;
 	double mouseY;
+	private List<PathTransition> bullets;
 	
 	public Game1(Stage stage) {
 		
@@ -74,29 +82,38 @@ public class Game1 extends Main {
             }
         }.start();
         
+        bullets = new ArrayList<>();
+        
         game1Scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
-            	Circle bullet = new Circle(5);
             	mouseX = event.getX();
             	mouseY = event.getY();
-        		Line bulletPath = new Line(man.getX() + man.getCharacter().getWidth()/2, man.getY() + man.getCharacter().getHeight()/2, mouseX, mouseY);
-        		shoot(bullet, bulletPath);
-            	root.getChildren().add(man.getCharacter());
+        		
+            	//Line bulletPath = new Line(man.getX() + man.getCharacter().getWidth()/2, man.getY() + man.getCharacter().getHeight()/2, mouseX, mouseY);
+        		//Object bull = bullet(new Circle(5), bulletPath, man);
+ 
+            	fire(man);
+            	//bullet.setOnFinished(e -> {root.getChildren().clear();root.getChildren().add(man.getCharacter());});
             }
           });
         
-        
 	}
 	
-	public void shoot(Circle bullet, Line bulletPath) {
-    	root.getChildren().add(bullet);
+	public void fire(Player man) {
+		Line bulletPath = new Line(man.getX() + man.getCharacter().getWidth()/2, man.getY() + man.getCharacter().getHeight()/2, mouseX, mouseY);
+		bullets.add(bullet(new Circle(5), bulletPath, man));
+		
+	}
+	
+	public PathTransition bullet(Circle bullet, Line bulletPath, Player man) {
+		root.getChildren().add(bullet);
     	PathTransition transition = new PathTransition();
     	transition.setNode(bullet);
     	transition.setPath(bulletPath);
     	transition.play();
-    	
+    	transition.setOnFinished(e -> {root.getChildren().remove(bullet);bullets.clear();});
+    	return transition;
 	}
-	
 	
 	
 	public static Scene getGame1Scene() {
