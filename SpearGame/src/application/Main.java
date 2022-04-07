@@ -7,12 +7,10 @@ public class Main extends Application {
 	
 	private static int WIDTH = 1100;
 	private static int HEIGHT = 800;
-	
 	@Override
 	public void start(Stage stage) {
 		try {
-			
-			new Menu(stage);
+			new Game(stage);
 			//Test 1 for the commit button Tedi
 			
 		} catch(Exception e) {

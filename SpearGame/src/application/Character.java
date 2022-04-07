@@ -10,6 +10,8 @@ public abstract class Character {
     Main main = new Main();
     private double playerX;
     private double playerY;
+    protected static double maxHealth = 100.0;
+    protected static double currentHealth = 100.0;
     
     public Character(Rectangle rectangle, int x, int y) {
         this.character = rectangle;

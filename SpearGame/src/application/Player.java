@@ -26,7 +26,7 @@ public class Player extends Character {
     
     @Override
     public void up() {
-    	if(this.getCharacter().getTranslateY() > 0)
+    	if(this.getCharacter().getTranslateY() > 50)
     		super.up();
     }
     
@@ -44,5 +44,24 @@ public class Player extends Character {
     public double getX() {
     	return super.getCharacter().getTranslateX();
     }
+    
+    public double getSizeX() {
+    	return super.getCharacter().getWidth();
+    }
+    
+    public double getSizeY() {
+    	return super.getCharacter().getHeight();
+    }
+    
+    public double getMaxHealth() {
+    	return super.maxHealth;
+    }
+    
+    public double getCurrentHealth() {
+    	return super.currentHealth;
+    }
 
+    public double setCurrentHealth(double currentHealth) {
+    	return super.currentHealth=currentHealth;
+    }
 }

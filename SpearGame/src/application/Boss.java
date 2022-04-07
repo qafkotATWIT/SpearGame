@@ -8,19 +8,21 @@ import javafx.animation.Timeline;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class Boss extends Main{
-	private Rectangle boss = new Rectangle(getWidth()/2-25,getHeight()/8,50,50);
+public class Boss{
+	protected static double bossmaxHealth = 100.0;
+    protected static double bosscurrentHealth = 100.0;
+	Main main = new Main();
+	private Rectangle boss = new Rectangle(main.getWidth()/2-25,main.getHeight()/8,50,50);
 	
 	public Boss() {
 		play();
-		// TODO Auto-generated constructor stub
 	}
 	
 	//My boss method
 
     private void play() {
-      double x = new Random().nextInt(getWidth()); //size of possible X movement based on screen
-      double y = new Random().nextInt(getHeight()); //size of possible Y movement based on screen
+      double x = new Random().nextInt(main.getWidth()); //size of possible X movement based on screen
+      double y = new Random().nextInt(main.getHeight()); //size of possible Y movement based on screen
       
       final Timeline timeline = new Timeline();      // cycle count = 2 because of autoreverse
       //timeline.setCycleCount(0); 					//this is 2 on default but changing it will also change boss behavior
@@ -42,10 +44,30 @@ public class Boss extends Main{
     }
     
     public double getY() {
-    	return getBoss().getTranslateY();
+    	return boss.getY();
     }
     
     public double getX() {
-    	return getBoss().getTranslateX();
+    	return boss.getX();
+    }
+    
+    public double getSizeX() {
+    	return boss.getWidth();
+    }
+    
+    public double getSizeY() {
+    	return boss.getHeight();
+    }
+    
+    public double getBossMaxHealth() {
+    	return bossmaxHealth;
+    }
+    
+    public double getBossCurrentHealth() {
+    	return bosscurrentHealth;
+    }
+    
+    public void setBossCurrentHealth(double value) {
+    	bosscurrentHealth=value;
     }
 }
