@@ -1,8 +1,13 @@
 package application;
 
-import javafx.geometry.Point2D;
-import javafx.scene.shape.Rectangle;
+import java.io.InputStream;
 
+import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
+//Images <a href='https://pngtree.com/so/red'>red png from pngtree.com/</a>
 public abstract class Character {
 	
     private Rectangle character;
@@ -10,16 +15,21 @@ public abstract class Character {
     Main main = new Main();
     private double playerX;
     private double playerY;
+    private static int playerSpeed = 3;
     protected static double maxHealth = 100.0;
     protected static double currentHealth = 100.0;
+    private InputStream inStream = getClass().getResourceAsStream("man.png");
+    private Image image =  new Image(inStream); 
     
-    public Character(Rectangle rectangle, int x, int y) {
+    public Character(Rectangle rectangle, int x, int y, int playerSpeed) {
         this.character = rectangle;
+        this.character.setFill(new ImagePattern(image));
         this.character.setTranslateX(x);
         this.character.setTranslateY(y);
         this.movement = new Point2D(0, 0);
         this.playerX = character.getTranslateX();
         this.playerY = character.getTranslateY();
+        this.playerSpeed=playerSpeed;
     }
 
     
@@ -29,28 +39,28 @@ public abstract class Character {
 
 	
     public void turnLeft() {
-    		this.character.setTranslateX(this.character.getTranslateX() - 3);
+    		this.character.setTranslateX(this.character.getTranslateX() - playerSpeed);
     }
 
     
     public void turnRight() {
-    		this.character.setTranslateX(this.character.getTranslateX() + 3);
+    		this.character.setTranslateX(this.character.getTranslateX() + playerSpeed);
     }
 
     
     public void up() {
-    		this.character.setTranslateY(this.character.getTranslateY() - 3);
+    		this.character.setTranslateY(this.character.getTranslateY() - playerSpeed);
     }
     
     
     public void down() {
-    		this.character.setTranslateY(this.character.getTranslateY() + 3);
+    		this.character.setTranslateY(this.character.getTranslateY() + playerSpeed);
     }
     
     
     public void restart() {
-        this.character.setTranslateX(100);
-        this.character.setTranslateY(100);
+        this.character.setTranslateX(0);
+        this.character.setTranslateY(50);
         this.character.setRotate(0);
         this.movement = new Point2D(0,0);
         

@@ -1,43 +1,70 @@
 package application;
 
+import java.io.InputStream;
 import java.util.Random;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+// Images gotten from <a href='https://pngtree.com/so/hand'>hand png from pngtree.com/</a>
+// <a href='https://pngtree.com/so/red'>red png from pngtree.com/</a>
 public class Boss{
 	protected static double bossmaxHealth = 100.0;
     protected static double bosscurrentHealth = 100.0;
+    private static int bossSpeed;
+    public Timeline timeline = new Timeline();
+    private InputStream inStream = getClass().getResourceAsStream("spaceship.png");
+    private Image image =  new Image(inStream);
 	Main main = new Main();
-	private Rectangle boss = new Rectangle(main.getWidth()/2-25,main.getHeight()/8,50,50);
+	private static int bossSize=50;
+	private Rectangle boss;
 	
-	public Boss() {
+	public Boss(int speed, int size) {
+		Boss.setBossSize(size);
+		Boss.setBossSpeed(speed);
+		boss = new Rectangle(main.getWidth()/2-25,main.getHeight()/8,bossSize,bossSize);
+		this.getBoss().setFill(new ImagePattern(image));
 		play();
 	}
-	
-	//My boss method
 
     private void play() {
-      double x = new Random().nextInt(main.getWidth()); //size of possible X movement based on screen
-      double y = new Random().nextInt(main.getHeight()); //size of possible Y movement based on screen
+    	double x = new Random().nextInt(main.getWidth()-30); //size of possible X movement based on screen
+    	double y = new Random().nextInt(main.getHeight()-30); //size of possible Y movement based on screen
       
-      final Timeline timeline = new Timeline();      // cycle count = 2 because of autoreverse
-      //timeline.setCycleCount(0); 					//this is 2 on default but changing it will also change boss behavior
-      //timeline.setAutoReverse(true);
-      final KeyValue kx = new KeyValue(boss.xProperty(), x + 50);
-      final KeyValue ky = new KeyValue(boss.yProperty(), y);
-//      final KeyValue kx = new KeyValue(boss.xProperty(), x + 50);
-//      final KeyValue ky = new KeyValue(boss.yProperty(), y + 0); //making this number lower means boss will stay closer to top
-      final KeyValue kScale = new KeyValue(boss.scaleXProperty(), 2); //this would cause boss to change size
-//      final KeyValue kFade = new KeyValue(rectBasicTimeline.opacityProperty(), 0); //this would cause boss to fade color
-      final KeyFrame kf = new KeyFrame(Duration.millis(1000), kx, ky);
-      timeline.getKeyFrames().add(kf);
-      timeline.setOnFinished(e -> play());
-      timeline.play();
-  }
+    	timeline = new Timeline();
+    	final KeyValue kx = new KeyValue(boss.xProperty(), x + 50);
+    	final KeyValue ky = new KeyValue(boss.yProperty(), y + 0);//making this number lower means boss will stay closer to top
+    	final KeyFrame kf = new KeyFrame(Duration.millis(1100-bossSpeed), kx, ky);
+    	timeline.getKeyFrames().add(kf);
+    	timeline.setOnFinished(e -> play());
+    	timeline.play();
+	}
+    
+    public Timeline getTimeline() {
+		return timeline;
+    	
+    }
+    
+    public static int getBossSpeed() {
+    	return bossSpeed;
+    }
+    
+    public static void setBossSpeed(int speed) {
+    	bossSpeed = speed;
+    }
+    
+    public static int getBossSize() {
+    	return bossSize;
+    }
+    
+    public static void setBossSize(int size) {
+    	bossSize = size;
+    }
     
     public Rectangle getBoss() {
     	return boss;

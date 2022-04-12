@@ -1,15 +1,13 @@
 package application;
 
 import java.awt.MouseInfo;
-
 import javafx.scene.shape.Rectangle;
 
 // This Player class overrides the Character class's movement classes to stop at the edges.
 public class Player extends Character {
 	
-	
-    public Player(int x, int y) {
-        super(new Rectangle(30,30),x,y);
+    public Player(int x, int y, int speed) {
+        super(new Rectangle(30,30),x,y, speed);
     }
     
     @Override
@@ -64,4 +62,5 @@ public class Player extends Character {
     public double setCurrentHealth(double currentHealth) {
     	return super.currentHealth=currentHealth;
     }
+    
 }
