@@ -41,6 +41,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class Game extends Main{
@@ -234,7 +235,7 @@ public class Game extends Main{
 		
 		
 		// Labels
-		Label name = new Label("Spear Game");
+		Label name = new Label("Game Options");
 		name.setFont(Font.font("Cambria", 75));
 		
 		/*-----------------------------------------------ALIGN BUTTONS ON OPTIONS ROOT---------------------------------------------*/
@@ -257,13 +258,14 @@ public class Game extends Main{
 		optionsRoot.setCenter(menu);
 		optionsRoot.setTop(top);
 		optionsScene = new Scene(optionsRoot,getWidth(),getHeight());
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("man.png"))); 
 		stage.setTitle("Spear Game");
 		stage.setScene(optionsScene);
 		stage.centerOnScreen();
 		stage.show();
 	}
 	
-	/*----------------------------------------------Options Ends----------------------------------------------------------*/
+	/*----------------------------------------------BUILD MENU----------------------------------------------------------*/
 	
 	public void buildMenu() {
 		menuRoot = new BorderPane(); // layout of scene 
@@ -294,6 +296,7 @@ public class Game extends Main{
 		menuRoot.setCenter(menu);
 		menuRoot.setTop(top);
 		menuScene = new Scene(menuRoot,getWidth(),getHeight());
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("man.png"))); 
 		stage.setTitle("Spear Game");
 		stage.setScene(menuScene);
 		stage.centerOnScreen();
@@ -307,7 +310,9 @@ public class Game extends Main{
 	public void buildGame(int level) {
 		gameRoot = new Pane();
 		game1Scene = new Scene(gameRoot,getWidth(),getHeight());
-		stage.setTitle("Game 1");
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("man.png"))); 
+		stage.setTitle("Spear Game");
+		stage.setResizable(false);
 		stage.setScene(game1Scene);
 		stage.centerOnScreen();
 		stage.show();
