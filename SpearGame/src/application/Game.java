@@ -58,10 +58,10 @@ public class Game extends Main{
 	private static boolean multiKill= true;	// multi or single kill
 	private static int playerSpeed = 3; 	// 1-10
 	private static int bossSpeedGame=100; 	// 100-1000
-	private static int bossSizeGame = 100; 	// 50 70 ... 230 250
+	private static int bossSizeGame = 90; 	// 50 70 ... 230 250
+	private static int bulletSpeed = 20;
 	private ArrayList<PathTransition> bullets;
 	private static boolean isShooting = false;
-	private static double bulletSpeed = 20;
 	private static int level = 1;
 	private static int bossCount;
 	private String displayLevel = "Level: " + level;
@@ -77,7 +77,7 @@ public class Game extends Main{
 		buildMenu();	
 	}
 	
-/*--------------------------------------------------------------Options Starts----------------------------------------------------------------------*/
+/*-------------------------------------------------------------GAME OPTIONS MENU-------------------------------------------------------------------*/
 	public void buildOptions() {
 		optionsRoot = new BorderPane(); // layout of scene 
 
@@ -155,12 +155,12 @@ public class Game extends Main{
 		Button minusBossSize = createButton("+");
 		minusBossSize.setMinWidth(60);
 		minusBossSize.setOnAction(e -> {
-			if(getBossSize()!=250) {
+			if(getBossSize()!=230) {
 				bossSize.setDisable(false);
 				setBossSize(getBossSize()+20);
 				displayBossSize = "Boss Size: " + (getBossSize());
 				bossSize.setText(displayBossSize);
-				if(getBossSize()==250)
+				if(getBossSize()==230)
 					bossSize.setDisable(true);
 			}
 		});
@@ -172,13 +172,13 @@ public class Game extends Main{
 				setBossSize(getBossSize()-20);
 				displayBossSize = "Boss Size: " + (getBossSize());
 				bossSize.setText(displayBossSize);
-				if(getBossSpeed()==50)
+				if(getBossSize()==50)
 					bossSize.setDisable(true);
 			}
 		});
-		if(getBossSize()!=250) {
+		if(getBossSize()==230) {
 			bossSize.setDisable(true);
-		} else if(getBossSize()!=50) {
+		} else if(getBossSize()==50) {
 			bossSize.setDisable(true);
 		}
 		
@@ -215,7 +215,7 @@ public class Game extends Main{
 			bossSpeed.setDisable(true);
 		}
 		
-		
+		/*-------------------------------------------------MULTI KILL OPTION--------------------------------------------------*/
 		Button multiKill = createButton("Bullet multi-kill");
 		Button singleKill = createButton("Bullet single-kill");
 		multiKill.setMinWidth(50);
@@ -302,11 +302,10 @@ public class Game extends Main{
 		stage.centerOnScreen();
 		stage.show();
 	}
-/*-----------------------------------------------------------------Menu Ends-----------------------------------------------------------------*/
 	
 	
 	
-/*---------------------------------------------------------Start of Game-----------------------------------------------------------------*/
+	/*------------------------------------------------------START GAME CONSTRUCTOR--------------------------------------------------------------*/
 	public void buildGame(int level) {
 		gameRoot = new Pane();
 		game1Scene = new Scene(gameRoot,getWidth(),getHeight());
@@ -361,11 +360,7 @@ public class Game extends Main{
 		popupText.setTextAlignment(null);
 		buttonHolder.setAlignment(Pos.CENTER);
 		buttonHolder.getChildren().addAll(resume, options, exit);
-//		
-//		bossNum.get(0).getBoss().setFill(Color.GREEN);
-//        bossNum.get(1).getBoss().setFill(Color.BLUE);
-//        bossNum.get(2).getBoss().setFill(Color.GRAY);
-//        
+        
         Map <KeyCode, Boolean> pressedKeys = new HashMap<>();
         game1Scene.setOnKeyPressed(event -> {
             pressedKeys.put(event.getCode(), Boolean.TRUE);
@@ -408,8 +403,6 @@ public class Game extends Main{
             	            bossNum.get(i).setBossCurrentHealth(100);
             	            if(bossNum.size()!=0)
             	            	setbossCount(getbossCount()-1);
-            	            //bullets.get(i).stop();
-            	            //bullets.clear();
             	        }
                     	
                     	if(overlap(man,bossNum.get(i))) {
@@ -538,7 +531,7 @@ public class Game extends Main{
         gameRoot.getChildren().add(topLine);
 	
 	}
-/*-----------------------------------------------------End of Game---------------------------------------------------------------------------*/	
+	/*-----------------------------------------------------END OF GAME CONSTRUCTOR-----------------------------------------------------------------*/	
 	
 	
 	public void fire(Player man) {
@@ -644,12 +637,12 @@ public class Game extends Main{
 	}
 	
 	
-	public static double getBulletSpeed() {
+	public static int getBulletSpeed() {
 		return bulletSpeed;
 	}
 	
 	
-	public void setBulletSpeed(double bulletSpeed) {
+	public void setBulletSpeed(int bulletSpeed) {
 		this.bulletSpeed = bulletSpeed;
 	}
 	
