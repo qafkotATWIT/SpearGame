@@ -1,7 +1,6 @@
 # SpearGame
 
 Authors: Tedi Qafko, Sam Tommy
--------------------------------
 
 Game Description
 -----------------
@@ -12,17 +11,24 @@ Main Menu
 ---------
 
 Start Game -> starts game.
+
 How to Play -> (Currently set to do nothing.)
+
 Options -> Displays Game Options screen.
+
 Quit -> Quits game.
 
 Game Options: (All options are set to default when program is started
 ---------------------------------------------------------------------
 
 "Bullet single-kill" or "Bullet multi-kill" -> Changes the number of bosses each bullet fired can kill (Disabled or lowered opacity button is the seclected option)
+
 Bullet Speed -> Changes the rate at which bullets can be fired. Option 1 has a duration of 200 ms per bullet, option 10 has a duration of 20 ms per bullet.
+
 Player Speed -> Changes the speed that the player can move. Option 1 player moves 1 pixel at a time, option 10 player moves 10 pixels at a time. 
+
 Boss Speed -> Changes the speed the space ships are moving.
+
 Boss Size -> Changes the hit box of the space ships.
 
 Intalling Game Instructions
