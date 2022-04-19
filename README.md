@@ -37,6 +37,7 @@ Intalling Game Instructions
 To run the game:
 
 IMPORTANT: You will need a working and up-to-date javaFX with your javaFX class library already made and knowledge of how to Add User Library for JavaFX buildpath.
+If you do not know how to do this please refer to this video on YouTube for how to set up JavaFX on Eclipse: https://www.youtube.com/watch?v=bk28ytggz7E. 
 
 ----------------------------------------
 
