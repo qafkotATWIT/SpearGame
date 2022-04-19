@@ -47,17 +47,13 @@ Ex: C:\Users\yourusername\Desktop\SpearGame-main\SpearGame-main\SpearGame
 
 ----------------------------------------
 
-Open Eclipse. Make a new project named "SpearGame" case sensitive.
-
-When you have the SpearGame folder created, let's import the SpearGame files:
+Open Eclipse. Make a new project named "SpearGame" case sensitive. When you have the SpearGame folder created, let's import the SpearGame files:
 
 File -> Import -> General -> File System -> (At the top) From Directory 
 
 ->(Paste your directory. Ex: C:\Users\yourusername\Desktop\SpearGame-main\SpearGame-main\SpearGame)
 
-Once you click away, Select SpearGame and check the box. 
-
-Into Folder -> "SpearGame" -> Click Finish -> Yes to All
+Once you click away, Select SpearGame and check the box. -> Into Folder -> "SpearGame" -> Click Finish -> Yes to All
 
 ----------------------------------------
 
@@ -69,7 +65,6 @@ If you had success importing the game but see red error marks preventing you fro
 It may be an issue with the buildpath. Configure the build path by 
 
 Right Click -> SpearGame Folder -> Select -> Build Path -> Configure Build Path 
-
 Under "Libraries" Tab "Modulepath" needs javaFX, javaFX SDK, and JRE System Library
 
 ----(You may need to delete these and re-add them to make sure all the correct versions are added)----
@@ -79,17 +74,9 @@ Under "Libraries" Tab "Modulepath" needs javaFX, javaFX SDK, and JRE System Libr
 ----------------------------------------
 
 Run the Game
--> Package Explorer -> SpearGame -> src -> application -> (Right Click) Main.java -> Run As -> Java Application
-
--> Start Game
+-> Package Explorer -> SpearGame -> src -> application -> (Right Click) Main.java -> Run As -> Java Application -> Start Game
 
 ----------------------------------------
-
-Change Options
-
--> Esc
-
--> Options
 
 End
-----------------------------------------
+---
